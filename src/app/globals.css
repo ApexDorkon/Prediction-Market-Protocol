@@ -1,0 +1,267 @@
+/* ----------------------------------------------------------- */
+/* 1) Tailwind MUST be first                                   */
+/* ----------------------------------------------------------- */
+@import "tailwindcss";
+
+/* ----------------------------------------------------------- */
+/* 2) Default react-datepicker CSS (import from node_modules)  */
+/*    — This line MUST exist in globals.css                    */
+/* ----------------------------------------------------------- */
+@import "react-datepicker/dist/react-datepicker.css";
+
+/* ----------------------------------------------------------- */
+/* 3) Your custom react-datepicker Dark Theme overrides        */
+/* ----------------------------------------------------------- */
+.react-datepicker {
+  background-color: #111 !important;
+  border: 1px solid #333 !important;
+  color: #fff !important;
+  font-family: var(--font-sans);
+}
+
+.react-datepicker__header {
+  background-color: #1a1a1a !important;
+  border-bottom: 1px solid #333 !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  color: #fff !important;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: #ccc !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgba(155, 93, 229, 0.2) !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__time-list-item--selected {
+  background-color: #9b5de5 !important;
+  color: #fff !important;
+}
+
+.react-datepicker__triangle {
+  display: none !important;
+}
+
+.react-datepicker__time-container {
+  border-left: 1px solid #333 !important;
+}
+
+.react-datepicker__time-list {
+  background-color: #111 !important;
+  color: #ccc !important;
+}
+
+.react-datepicker__input-container input {
+  background: transparent !important;
+  color: #fff !important;
+  border: 1px solid #333 !important;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.react-datepicker__input-container input:focus {
+  border-color: #9b5de5 !important;
+  box-shadow: 0 0 0 2px rgba(155, 93, 229, 0.4);
+}
+
+/* ----------------------------------------------------------- */
+/* 4) Your Theme + CSS variables                                */
+/* ----------------------------------------------------------- */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-accentPurple: #9b5de5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ----------------------------------------------------------- */
+/* 5) Let Tailwind utilities in layout.tsx handle body color   */
+/* ----------------------------------------------------------- */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.25s ease-out;
+}
+/* nothing else needed */
+
+/* ----------------------------------------------------------- */
+/* 6) Purple flame / heat aura behind cards                    */
+/* ----------------------------------------------------------- */
+
+@keyframes purpleFlames {
+  0% {
+    opacity: 0.35;
+    transform: translateY(0px) scale(1);
+    filter: blur(22px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-8px) scale(1.05);
+    filter: blur(28px);
+  }
+  100% {
+    opacity: 0.35;
+    transform: translateY(0px) scale(1);
+    filter: blur(22px);
+  }
+}
+
+.purple-flame-bg {
+  position: relative;
+  overflow: visible; /* let flames escape */
+  z-index: 0;
+}
+
+.purple-flame-bg::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  pointer-events: none;
+  z-index: -2;
+  background: radial-gradient(
+    circle at 50% 70%,
+    rgba(155, 93, 229, 0.35),
+    rgba(80, 0, 180, 0.15),
+    rgba(0, 0, 0, 0)
+  );
+  animation: purpleFlames 4s ease-in-out infinite;
+}/* ========================= */
+/* 🔥 Purple Flame Animation */
+/* ========================= */
+
+@keyframes purpleFlameRise {
+  0% {
+    transform: translateY(10px) scale(1);
+    opacity: 0.45;
+    filter: blur(18px);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.08);
+    opacity: 0.85;
+    filter: blur(25px);
+  }
+  100% {
+    transform: translateY(10px) scale(1);
+    opacity: 0.45;
+    filter: blur(18px);
+  }
+}
+
+.purple-real-flames {
+  position: absolute;
+  bottom: -35px;
+  left: -25%;
+  transform: translateX(-50%);
+  width: 130%;
+  height: 140px;
+  background: radial-gradient(
+    circle at center,
+    rgba(155, 93, 229, 0.55),
+    rgba(120, 0, 200, 0.30),
+    rgba(0, 0, 0, 0)
+  );
+  animation: purpleFlameRise 2.5s infinite ease-in-out;
+  pointer-events: none;
+  z-index: -1; /* behind card but visible now */
+}
+/* Intensify on hover */
+
+/* =============================== */
+/* 🔥 Hide flames on hover         */
+/* =============================== */
+
+.card-with-purple-flame:hover .purple-real-flames {
+  opacity: 0;
+  filter: blur(40px);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.flame-glow {
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 25px rgba(155, 93, 229, 0.9))
+          drop-shadow(0 0 55px rgba(155, 93, 229, 0.6));
+  animation: flamePulse 2s infinite ease-in-out;
+}
+
+@keyframes flamePulse {
+  0% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 0.75; transform: scale(1); }
+}
+
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150px;
+  height: 100%;
+  width: 150px;
+  background: linear-gradient(
+    90deg,
+    rgba(155, 93, 229, 0) 0%,
+    rgba(155, 93, 229, 0.15) 50%,
+    rgba(155, 93, 229, 0) 100%
+  );
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,40 @@
+{
+  "name": "prediction-market",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "export": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.2.9",
+    "@reduxjs/toolkit": "^2.2.7",
+    "@tanstack/react-query": "^5.90.5",
+    "axios": "^1.12.2",
+    "date-fns": "^4.1.0",
+    "ethers": "^6.15.0",
+    "lucide-react": "^0.562.0",
+    "next": "15.1.11",
+    "react": "^19.0.0",
+    "react-datepicker": "^8.9.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.1.2",
+    "viem": "^2.38.3",
+    "wagmi": "^2.18.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/axios": "^0.9.36",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.11",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
