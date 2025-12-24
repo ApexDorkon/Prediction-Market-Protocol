@@ -9,17 +9,17 @@ A decentralized, institutional-grade event forecasting platform. This protocol a
 ### 1. Market Exploration
 Browse active, pending, and resolved markets across categories like Crypto, Sports, and Politics. Our high-performance indexing ensures sub-second filtering and search.
 
-<img src="allmarkets.png" width="100%" alt="All Markets Interface" />
+<img src="public/allmarkets.png" width="100%" alt="All Markets Interface" />
 
 ### 2. Strategic Betting & Analytics
 The trading terminal provides real-time probability visualization, potential payout calculations, and seamless USDC position entry.
 
-<img src="betpage.png" width="100%" alt="Betting Interface" />
+<img src="public/betpage.png" width="100%" alt="Betting Interface" />
 
 ### 3. Permissionless Creation
 Through the `BetMarketFactory`, anyone can deploy a new prediction market by providing a seed stake and setting the event parameters.
 
-<img src="createmarket.png" width="100%" alt="Create Market Interface" />
+<img src="public/createmarket.png" width="100%" alt="Create Market Interface" />
 
 ---
 
